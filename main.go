@@ -13,7 +13,7 @@ func main () {
     //  时间、源文件和行号.
     log.SetPrefix("greetings: ")
     log.SetFlags(0)
-		message, err := greetings.Hello("")
+		message, err := greetings.Hello("xiaofeng")
 		if err != nil {
 			log.Fatal(err)
 		}
