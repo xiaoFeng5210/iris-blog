@@ -3,19 +3,31 @@ package main
 import (
 	"fmt"
 	"log"
-
-	"example.com/greetings"
+  "encoding/csv"
+	"os"
 )
 
 func main () {
-	// 设置预定义Logger的属性，包括
-    // 日志条目前缀和禁用打印的标志
-    //  时间、源文件和行号.
-    log.SetPrefix("greetings: ")
-    log.SetFlags(0)
-		message, err := greetings.Hello("xiaofeng")
-		if err != nil {
-			log.Fatal(err)
-		}
-    fmt.Println(message)
+	// 首先我们要打开source文件夹下的csv文件
+	f, err := os.Open("source/pwd.csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	// 创建一个新的csv读取器
+	r := csv.NewReader(f)
+  // 读取csv文件， 这将返回一个切片，其中每个元素是一个字符串切片， 表示csv文件的一行
+	records, err := r.ReadAll()
+	if err != nil {
+		log.Fatal(err)
+	}
+	// fmt.Println(records)
+
+	for i, record := range records {
+		fmt.Printf("Record %d: %v\n", i, record)
+		// 把每个record切片里面的字符串拼接在一起
+		newStr := record[0] + record[1]
+		fmt.Println(newStr)
+	}
 }
