@@ -23,7 +23,10 @@ func main () {
 		log.Fatal(err)
 	}
 	// fmt.Println(records)
+	rangeRecords(records)
+}
 
+func rangeRecords(records [][]string) {
 	for i, record := range records {
 		fmt.Printf("Record %d: %v\n", i, record)
 		// 把每个record切片里面的字符串拼接在一起
