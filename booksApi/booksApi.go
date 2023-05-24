@@ -27,14 +27,14 @@ func list(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, books)
 }
 
+func helloWorld(ctx echo.Context) error {
+	return ctx.String(http.StatusOK, "Hello, World!")
+}
+
 func create(ctx echo.Context) error {
 	b := new(Book)
 	if err := ctx.Bind(b); err != nil {
 		return ctx.String(http.StatusBadRequest, "bad request")
 	}
 	return ctx.JSON(http.StatusOK, b)
-}
-
-func helloWorld(ctx echo.Context) error {
-	return ctx.String(http.StatusOK, "Hello, World!")
 }
