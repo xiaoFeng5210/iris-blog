@@ -14,6 +14,7 @@ func Run() {
 	e := echo.New()
 	e.GET("/", helloWorld)
 	e.GET("/books", list)
+	e.POST("create", create)
 	e.Start(":1323")
 }
 
@@ -24,6 +25,14 @@ func list(ctx echo.Context) error {
 		{"Black Hat Go"},
 	}
 	return ctx.JSON(http.StatusOK, books)
+}
+
+func create(ctx echo.Context) error {
+	b := new(Book)
+	if err := ctx.Bind(b); err != nil {
+		return ctx.String(http.StatusBadRequest, "bad request")
+	}
+	return ctx.JSON(http.StatusOK, b)
 }
 
 func helloWorld(ctx echo.Context) error {
