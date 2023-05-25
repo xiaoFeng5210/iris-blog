@@ -1,9 +1,10 @@
 package main
 
 import (
-	"echo-blog/booksapi"
+	"echo-blog/pointer"
 )
 
 func main() {
-	booksapi.Run()
+	// booksapi.Run()
+	pointer.Run()
 }
